@@ -1,0 +1,411 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    background:
+        radial-gradient(circle at top, #fff5f8, transparent 50%),
+        linear-gradient(135deg, #ffd6e2, #fff0f5);
+
+    color: #522b38;
+}
+
+
+/* =========================
+   FON YURAKLARI
+========================= */
+
+#floatingHearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.float-heart {
+    position: absolute;
+    bottom: -40px;
+
+    animation-name: floatUp;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    opacity: 0;
+}
+
+@keyframes floatUp {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   SAVOL
+========================= */
+
+.question-screen {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    z-index: 10;
+}
+
+.question-card {
+    width: 100%;
+    max-width: 390px;
+
+    padding: 45px 25px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(255,255,255,.8);
+
+    box-shadow:
+        0 25px 70px rgba(140, 45, 80, .18);
+
+    animation: cardIn .8s ease;
+}
+
+@keyframes cardIn {
+
+    from {
+        opacity: 0;
+        transform: scale(.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+}
+
+.big-heart {
+    font-size: 65px;
+
+    margin-bottom: 15px;
+
+    animation: heartBeat 1.4s infinite;
+}
+
+@keyframes heartBeat {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+.question-card h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.question-card p {
+    color: #956374;
+    margin-bottom: 30px;
+}
+
+
+/* TUGMALAR */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    min-height: 55px;
+}
+
+button {
+    border: none;
+
+    border-radius: 50px;
+
+    padding: 15px 28px;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+#yesBtn {
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #ff4c82,
+        #ff174f
+    );
+
+    box-shadow:
+        0 10px 25px rgba(255, 30, 80, .3);
+
+    transition: transform .2s;
+}
+
+#yesBtn:active {
+    transform: scale(.93);
+}
+
+#noBtn {
+    color: #875568;
+    background: white;
+
+    border: 1px solid #ffd0dc;
+}
+
+#noBtn.running {
+    position: fixed;
+
+    z-index: 100;
+}
+
+
+/* =========================
+   XAT EKRANI
+========================= */
+
+.letter-screen {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    overflow-y: auto;
+
+    z-index: 50;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #fff8fa,
+            #ffd4e1
+        );
+}
+
+.letter-screen.show {
+    display: flex;
+
+    animation: screenIn .7s ease;
+}
+
+@keyframes screenIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================
+   XATNING O'ZI
+========================= */
+
+.letter {
+    width: 100%;
+    max-width: 550px;
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 35px 30px;
+
+    background: #fffdf9;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 80px rgba(100, 30, 60, .25);
+
+    text-align: left;
+
+    position: relative;
+
+    animation: letterIn 1s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes letterIn {
+
+    0% {
+        opacity: 0;
+        transform: translateY(100px) scale(.75) rotate(-3deg);
+    }
+
+    60% {
+        transform: translateY(-10px) scale(1.02) rotate(1deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0);
+    }
+
+}
+
+
+/* XAT TEPASI */
+
+.letter-top {
+    text-align: center;
+
+    font-size: 55px;
+
+    margin-bottom: 10px;
+
+    animation: letterHeart 1.5s infinite;
+}
+
+@keyframes letterHeart {
+
+    50% {
+        transform: scale(1.1);
+    }
+
+}
+
+.letter h2 {
+    text-align: center;
+
+    color: #d93668;
+
+    font-size: 25px;
+
+    margin-bottom: 25px;
+}
+
+
+/* XAT MATNI */
+
+.letter-text p {
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: #593541;
+
+    margin-bottom: 18px;
+}
+
+.signature {
+    text-align: right;
+
+    margin-top: 30px;
+
+    color: #c04468;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   TELEFON
+========================= */
+
+@media (max-width: 500px) {
+
+    .question-card {
+        padding: 38px 20px;
+    }
+
+    .big-heart {
+        font-size: 55px;
+    }
+
+    .question-card h1 {
+        font-size: 29px;
+    }
+
+    .letter {
+        max-height: 82vh;
+
+        padding: 28px 22px;
+
+        border-radius: 18px;
+    }
+
+    .letter h2 {
+        font-size: 22px;
+    }
+
+    .letter-text p {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+}
+
+
+/* =========================
+   PORTLASH YURAKLARI
+========================= */
+
+.explosion-heart {
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    z-index: 200;
+
+    pointer-events: none;
+
+    font-size: 22px;
+}
